@@ -56,6 +56,7 @@
 - 新增 `vercel.json` 路由映射；`.gitignore` 增补 `.vercel/`、`data/snapshots/`、SQLite 临时文件
 - `make vercel` 升级为日期感知模式：过去日期优先使用本地快照/历史报告，不触发重新下载
 - 新增 SEC Filing 排序上限：单日报告最多保留 5 条，降低对其他信号的挤占
+- 趋势保留机制升级：移除关键词硬保底，改为 LLM 创新度优先（强调“现有元素重组”）并将高创新趋势前置
 
 ## 下一步
 - 接入 earnings call transcript

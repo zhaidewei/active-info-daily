@@ -11,6 +11,7 @@ from active_info.fetchers.context import fetch_article_context
 from active_info.fetchers.polymarket import fetch_polymarket_items
 from active_info.fetchers.rss import fetch_rss_items
 from active_info.fetchers.sec_filings import fetch_sec_filings
+from active_info.innovation_curator import InnovationCurator
 from active_info.models import NewsItem
 from active_info.reporting import build_json_payload, build_markdown
 from active_info.scoring import score_items
@@ -163,6 +164,7 @@ def _render_and_store(
     )
     analysis = analyzer.analyze(date_key, llm_items)
     analysis.overview = str(analysis.overview).strip()
+    analysis = InnovationCurator(settings).curate(analysis, llm_items)
 
     top_items = ranked[:15]
     power_focus = [item for item in ranked if item.category == "power_trading"][:8]
