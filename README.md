@@ -155,9 +155,8 @@ make static LATEST_ONLY=true
 
 ## Vercel 托管
 
-本仓库已包含 `vercel.json`，会把路由映射到 `site/` 静态目录：
-- `/` -> `/site/index.html`
-- `/reports/*` -> `/site/reports/*`
+本仓库已包含 `vercel.json`，并显式设置 `outputDirectory: site`。
+Vercel 会直接把 `site/` 作为发布根目录。
 
 推荐每日流程（本机）：
 1. `make vercel REPORT_DATE=YYYY-MM-DD`
