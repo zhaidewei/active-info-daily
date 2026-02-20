@@ -127,6 +127,20 @@ def _shortlist_for_llm(settings: Settings, ranked_items: List[NewsItem]) -> List
     return shortlist
 
 
+def _cap_source_items(items: List[NewsItem], source_name: str, cap: int) -> List[NewsItem]:
+    if cap < 0:
+        return items
+    kept: List[NewsItem] = []
+    source_count = 0
+    for item in items:
+        if item.source == source_name:
+            if source_count >= cap:
+                continue
+            source_count += 1
+        kept.append(item)
+    return kept
+
+
 def _render_and_store(
     settings: Settings,
     report_storage: ReportStorage,
@@ -136,6 +150,7 @@ def _render_and_store(
     deduped_items, ingest_stats = dedupe_items(all_items)
 
     ranked = score_items(deduped_items)
+    ranked = _cap_source_items(ranked, source_name="SEC Filing", cap=5)
     llm_items = _shortlist_for_llm(settings, ranked)
 
     analyzer = Analyzer(

@@ -133,20 +133,20 @@ def _append_refs(items: List[str], sources: List[Tuple[int, NewsItem, str]], lim
 def _followup_detail(text: str) -> Tuple[str, str]:
     lowered = text.lower()
     if any(k in lowered for k in ["sec", "监管", "政策", "牌照"]):
-        return "监管边际变化会改变估值锚与风险溢价。", "跟踪政策落地时间、适用范围与首批受益标的。"
+        return "监管边际变化会改变估值锚与风险溢价。", "政策落地时间、适用范围与首批受益标的。"
     if any(k in lowered for k in ["财报", "8-k", "10-k", "10-q", "业绩"]):
-        return "财报与指引变化通常先于市场预期修正。", "跟踪指引上修/下修与资本开支节奏。"
+        return "财报与指引变化通常先于市场预期修正。", "指引上修/下修与资本开支节奏。"
     if any(k in lowered for k in ["电力", "电网", "ppa", "ercot", "储能"]):
-        return "电力供需与并网约束会传导到现货价格和公用事业估值。", "跟踪区域负荷、并网进度与容量价格变化。"
+        return "电力供需与并网约束会传导到现货价格和公用事业估值。", "区域负荷、并网进度与容量价格变化。"
     if any(k in lowered for k in ["ai", "模型", "算力", "芯片"]):
-        return "AI基础设施投入决定中期收入弹性与利润率拐点。", "跟踪算力资本开支、云需求和推理成本变化。"
+        return "AI基础设施投入决定中期收入弹性与利润率拐点。", "算力资本开支、云需求和推理成本变化。"
     if any(k in lowered for k in ["web3", "加密", "比特币", "solana", "defi", "链上"]):
-        return "链上活动与合规进度是Web3估值的重要先行指标。", "跟踪链上交易量、机构采用和监管进展。"
-    return "该信号可能影响中期预期差。", "持续跟踪下一次公告或数据更新。"
+        return "链上活动与合规进度是Web3估值的重要先行指标。", "链上交易量、机构采用和监管进展。"
+    return "该信号可能影响中期预期差。", "下一次公告或数据更新。"
 
 
 def _build_opportunity_table(items: List[str], sources: List[Tuple[int, NewsItem, str]]) -> str:
-    header = "| 机会信号 | 为什么重要 | 跟踪动作 | 关联原始链接 |\n| --- | --- | --- | --- |"
+    header = "| 机会信号 | 为什么重要 | 关注目标 | 关联原始链接 |\n| --- | --- | --- | --- |"
     rows: List[str] = []
     for raw in items:
         signal = _strip_bullet_prefix(raw)
