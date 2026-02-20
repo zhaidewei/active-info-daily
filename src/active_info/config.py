@@ -20,10 +20,13 @@ class Settings(BaseSettings):
     openai_api_key: Optional[str] = None
     openai_model: str = Field(default="gpt-4o-mini")
     deepseek_api_key: Optional[str] = None
-    deepseek_model: str = Field(default="deepseek-chat")
+    deepseek_model: str = Field(default="deepseek-reasoner")
     deepseek_base_url: str = Field(default="https://api.deepseek.com")
+    deepseek_strict_model: bool = Field(default=True)
     translation_enabled: bool = Field(default=True)
     translation_max_chars: int = Field(default=9000)
+    llm_scoring_enabled: bool = Field(default=True)
+    llm_scoring_max_items: int = Field(default=80)
 
     report_max_items: int = Field(default=80)
     llm_input_items: int = Field(default=25)

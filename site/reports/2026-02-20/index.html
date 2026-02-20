@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>主动信息汇总日报 - 2026-02-20</title>
+  <title>乐观者的主动信息汇总 - 2026-02-20</title>
   <style>
     body { font-family: "Avenir Next", "PingFang SC", sans-serif; margin: 24px; background: #f4f7ff; color: #1f2430; }
     .container { max-width: 980px; margin: 0 auto; background: #fff; padding: 24px; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,.08); }
     .page-title { margin: 14px 0 6px; line-height: 1.2; }
+    .slogan { margin: 4px 0 12px; color: #3d4f70; font-style: italic; line-height: 1.6; }
     .subtitle { font-size: 13px; color: #5e6e88; margin-bottom: 10px; }
     .toolbar { display: flex; gap: 10px; margin: 14px 0 20px; }
     .btn { border: 1px solid #ccd6ea; background: #f8fbff; color: #173b6f; padding: 7px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; }
@@ -23,98 +24,106 @@
 </head>
 <body>
   <div class="container">
-    <a href="/">返回列表</a>
-    <h1 class="page-title">主动信息汇总日报 - 2026-02-20</h1>
-    <div class="subtitle">数据来源·（原始抓取 148，去重后 134，重复移除 14）·</div>
+    <a id="back-link" href="/" data-zh="返回列表" data-en="Back to List">返回列表</a>
+    <h1 id="page-title" class="page-title" data-zh="乐观者的主动信息汇总 - 2026-02-20" data-en="Optimists' Active Intelligence Brief - 2026-02-20">乐观者的主动信息汇总 - 2026-02-20</h1>
+    <div id="page-slogan" class="slogan" data-zh="悲观者常常更早看见风险，乐观者更可能把握结果；被动刷流量放大焦虑，主动抓取与筛选才能沉淀机会。" data-en="Pessimists may spot risks first, but optimists capture outcomes; passive feeds monetize anxiety, while active sourcing and filtering turns information into opportunity.">悲观者常常更早看见风险，乐观者更可能把握结果；被动刷流量放大焦虑，主动抓取与筛选才能沉淀机会。</div>
+    <div id="source-subtitle" class="subtitle" data-zh="数据来源·（原始抓取 148，去重后 134，重复移除 14）·" data-en="Sources (raw 148, deduped 134, removed 14).">数据来源·（原始抓取 148，去重后 134，重复移除 14）·</div>
 
     <div class="toolbar">
       <button id="btn-zh" class="btn active" onclick="switchLang('zh')">中文</button>
       <button id="btn-en" class="btn" onclick="switchLang('en')">English</button>
-      <button id="btn-shot" class="btn" onclick="exportScreenshot()">一键导出长图</button>
+      <button
+        id="btn-shot"
+        class="btn"
+        onclick="exportScreenshot()"
+        data-zh="一键导出长图"
+        data-en="Export Screenshot"
+        data-loading-zh="导出中..."
+        data-loading-en="Exporting..."
+      >一键导出长图</button>
     </div>
 
-    <article id="panel-zh" class="panel active"><h2>1) IT / AI / Web3 / 电力交易 行业重大突破</h2>
+    <article id="panel-zh" class="panel active"><h2>1. 事实与新闻</h2>
 <ul>
-<li>美国证券交易委员会明确释放加密创新豁免信号，美国链上证券交易监管取得突破（来源: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a>）</li>
-<li>Matrixdock将亚洲最大的代币化黄金产品XAUm部署至Solana，实现机构级黄金代币化（来源: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>）</li>
-<li>区块链跨境支付技术成熟，Chainlink推动安全合规的链上跨境支付解决方案（来源: <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">#4</a>）</li>
-<li>Cardano成立Pentad联盟，设立7000万ADA关键集成预算以推动机构采用</li>
+<li>Matrixdock将亚洲最大的代币化黄金产品XAUm部署至Solana，实现机构级黄金代币化（来源: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>）</li>
+<li>美国证券交易委员会（SEC）明确表示正在考虑加密创新豁免，为链上证券交易铺平道路（来源: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a>）</li>
+<li>机构级代币化黄金产品扩展至Solana，为DeFi与传统资产融合创造新机会（来源: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>）</li>
+<li>区块链跨境支付解决方案趋于成熟，Chainlink等技术提供商受益于需求增长（来源: <a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">#4</a>, <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>）</li>
+<li>预测市场与内容平台（如Polymarket与Substack）合作，探索新型商业模式（来源: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">#4</a>）</li>
+<li>以太坊和Solana等公链持续升级，提升可扩展性和开发者体验（来源: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>）</li>
 </ul>
-<h2>2) 股票投资价值积极信号</h2>
+<h2>2. 可能的趋势与机会</h2>
+<h3>Web3 与链上金融</h3>
 <ul>
-<li>加密市场受最高法院关税裁决提振，监管环境改善利好加密货币相关股票（来源: <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>）</li>
-<li>代币化黄金产品扩展至Solana，为机构投资者提供新型资产配置工具（来源: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>）</li>
-<li>大型科技公司（NVDA、MSFT、META、AMZN、GOOGL、AAPL）财报密集披露，AI相关资本支出持续增长（来源: <a href="https://www.sec.gov/Archives/edgar/data/1045810/000104581026000003/nvda-20260120.htm">#6</a>, <a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm">#7</a>）</li>
-<li>企业购电协议市场虽整体下滑，但AI需求支撑大型科技公司清洁能源采购（来源: <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>）</li>
+<li>SEC的明确信号显示，美国链上证券交易已从“是否可行”转向“何时实现”，监管创新豁免有望在年内落地（来源: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">#4</a>）</li>
+<li><em>-&gt; 监管边际放松或规则清晰化，通常会导致估值体系重定价。</em></li>
+<li>链上证券交易从“是否可行”转向“何时实现”，监管进展快于预期（来源: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">#4</a>）</li>
+<li><em>-&gt; 监管边际放松或规则清晰化，通常会导致估值体系重定价。</em></li>
+<li>代币化从加密货币向传统资产（如黄金）扩展，机构采用加速（来源: <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>）</li>
+<li><em>-&gt; 链上合规化与机构化进程推进，可能带来新一轮资产与流量迁移。</em></li>
+<li>Solana生态：代币化资产扩展和网络升级带来增长潜力（来源: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>）</li>
+<li><em>-&gt; 链上合规化与机构化进程推进，可能带来新一轮资产与流量迁移。</em></li>
 </ul>
-<h2>3) 机会跟踪清单（趋势 + Watchlist）</h2>
-<table>
-<thead>
-<tr>
-<th>机会信号</th>
-<th>为什么重要</th>
-<th>跟踪动作</th>
-<th>关联原始链接</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>企业购电协议市场九年来首次下滑，但AI需求填补缺口，太阳能仍是主导技术</td>
-<td>AI基础设施投入决定中期收入弹性与利润率拐点。</td>
-<td>跟踪算力资本开支、云需求和推理成本变化。</td>
-<td><a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a></td>
-</tr>
-<tr>
-<td>加密原生通信工具Status作为Discord替代品兴起，反映隐私需求增长</td>
-<td>链上活动与合规进度是Web3估值的重要先行指标。</td>
-<td>跟踪链上交易量、机构采用和监管进展。</td>
-<td><a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a></td>
-</tr>
-<tr>
-<td>韩国Bithumb 430亿美元比特币失误事件引发监管反思，可能推动更严格的安全标准</td>
-<td>监管边际变化会改变估值锚与风险溢价。</td>
-<td>跟踪政策落地时间、适用范围与首批受益标的。</td>
-<td><a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a></td>
-</tr>
-<tr>
-<td>英国数字资产与代币化演进，为传统金融与区块链融合提供新路径</td>
-<td>该信号可能影响中期预期差。</td>
-<td>持续跟踪下一次公告或数据更新。</td>
-<td>-</td>
-</tr>
-<tr>
-<td>美国证券交易委员会加密创新豁免政策后续进展及对合规加密交易平台的影响</td>
-<td>监管边际变化会改变估值锚与风险溢价。</td>
-<td>跟踪政策落地时间、适用范围与首批受益标的。</td>
-<td><a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a>, <a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">#4</a></td>
-</tr>
-<tr>
-<td>代币化黄金产品在DeFi中的整合应用及机构采用程度</td>
-<td>链上活动与合规进度是Web3估值的重要先行指标。</td>
-<td>跟踪链上交易量、机构采用和监管进展。</td>
-<td><a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a></td>
-</tr>
-<tr>
-<td>AI需求对电力交易市场的长期结构性影响及清洁能源采购模式演变</td>
-<td>电力供需与并网约束会传导到现货价格和公用事业估值。</td>
-<td>跟踪区域负荷、并网进度与容量价格变化。</td>
-<td><a href="https://www.pv-magazine.com/2026/02/20/corporate-ppa-deals-down-10-in-2025-as-ai-demand-plugs-gaps/">#5</a>, <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a></td>
-</tr>
-<tr>
-<td>大型科技公司财报中AI资本支出数据及对供应链企业的拉动效应</td>
-<td>财报与指引变化通常先于市场预期修正。</td>
-<td>跟踪指引上修/下修与资本开支节奏。</td>
-<td><a href="https://www.sec.gov/Archives/edgar/data/1045810/000104581026000003/nvda-20260120.htm">#6</a>, <a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm">#7</a>, <a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526027198/msft-20260128.htm">#8</a></td>
-</tr>
-<tr>
-<td>加密银行牌照审批进展（如World Liberty Financial）及监管态度变化</td>
-<td>监管边际变化会改变估值锚与风险溢价。</td>
-<td>跟踪政策落地时间、适用范围与首批受益标的。</td>
-<td><a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a></td>
-</tr>
-</tbody>
-</table>
+<h3>制度与监管红利</h3>
+<ul>
+<li>英国等地区在数字资产和代币化方面的演进，为全球合规框架提供参考（来源: <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>）</li>
+<li><em>-&gt; 需求增量或新商业模式，具备中期机会价值。</em></li>
+</ul>
+<h3>跨行业组合机会</h3>
+<ul>
+<li>代币化黄金产品：机构采用可能推动更多传统资产上链（来源: <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>）</li>
+<li><em>-&gt; 需求增量或新商业模式，具备中期机会价值。</em></li>
+</ul>
 <h2>重点原始链接</h2>
+<ol>
+<li><a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">Here’s what happened in crypto today</a>（Cointelegraph, 评分=10.2）</li>
+<li><a href="https://solana.com/news/matrixdock-xaum-launch">Matrixdock Brings XAUm to Solana, Expanding Institutional-Grade Tokenized Gold Access</a>（Solana News, 评分=5.1）</li>
+<li><a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">The SEC Is Eyeing a Crypto Innovation Exemption This Year</a>（Bankless, 评分=5.1）</li>
+<li><a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">How Blockchain Improves Cross-Border Payments</a>（Chainlink Blog, 评分=5.1）</li>
+<li><a href="https://www.pv-magazine.com/2026/02/20/corporate-ppa-deals-down-10-in-2025-as-ai-demand-plugs-gaps/">Corporate PPA deals down 10% in 2025 as AI demand plugs gaps</a>（pv magazine International, 评分=4.9）</li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1045810/000104581026000003/nvda-20260120.htm">NVDA filed 8-K (2026-01-23)</a>（SEC Filing, 评分=3.8）</li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm">MSFT filed 10-Q (2026-01-28)</a>（SEC Filing, 评分=3.8）</li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526027198/msft-20260128.htm">MSFT filed 8-K (2026-01-28)</a>（SEC Filing, 评分=3.8）</li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm">META filed 10-K (2026-01-29)</a>（SEC Filing, 评分=3.8）</li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1326801/000162828026003832/meta-20260128.htm">META filed 8-K (2026-01-28)</a>（SEC Filing, 评分=3.8）</li>
+<li><a href="https://www.theblock.co/post/390653/crypto-prices-rally-as-supreme-court-strikes-down-trumps-broad-tariff-regime?utm_source=rss&amp;utm_medium=rss">Crypto prices rally as Supreme Court strikes down Trump’s broad tariff regime</a>（The Block, 评分=3.7）</li>
+<li><a href="https://decrypt.co/358744/south-korean-lawmakers-slam-regulators-bithumb-43-billion-bitcoin-blunder">South Korean Lawmakers Slam Regulators Over Bithumb's $43 Billion Bitcoin Blunder</a>（Decrypt, 评分=3.7）</li>
+<li><a href="https://www.bankless.com/read/status-cypherpunk-discord-alternative">The Cypherpunk Alternative to Discord</a>（Bankless, 评分=3.7）</li>
+<li><a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">The Evolution of Digital Assets and Tokenization in the United Kingdom</a>（Chainlink Blog, 评分=3.7）</li>
+<li><a href="https://www.theblock.co/post/390625/house-democrats-press-treasury-sec-bessent-over-occ-review-of-trump-linked-world-liberty-financials-trust-bank-charter?utm_source=rss&amp;utm_medium=rss">House Democrats press Treasury Sec. Bessent over OCC review of Trump-linked World Liberty Financial’s trust bank charter</a>（The Block, 评分=3.7）</li>
+</ol></article>
+    <article id="panel-en" class="panel"><h2>1. Facts &amp; News</h2>
+<ul>
+<li>Matrixdock deploys Asia's largest tokenized gold product, XAUm, to Solana, enabling institutional-grade gold tokenization (Source: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>)</li>
+<li>SEC explicitly states it is considering a crypto innovation exemption, paving the way for on-chain securities trading (Source: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a>)</li>
+<li>Institutional-grade tokenized gold product expands to Solana, creating new opportunities for DeFi and traditional asset integration (Source: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>)</li>
+<li>Blockchain cross-border payment solutions mature, with technology providers like Chainlink benefiting from growing demand (Source: <a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">#4</a>, <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>)</li>
+<li>Prediction markets and content platforms (e.g., Polymarket and Substack) collaborate to explore new business models (Source: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">#4</a>)</li>
+<li>Public blockchains like Ethereum and Solana continue to upgrade, improving scalability and developer experience (Source: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>)</li>
+</ul>
+<h2>2. Potential Trends &amp; Opportunities</h2>
+<h3>Web3 &amp; On-Chain Finance</h3>
+<ul>
+<li>Clear signals from the SEC indicate that on-chain securities trading in the US has shifted from "if feasible" to "when it will happen," with regulatory innovation exemption expected to be implemented within the year (Source: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">#4</a>)</li>
+<li><em>-&gt; Marginal regulatory relaxation or rule clarification often leads to a re-rating of valuation frameworks.</em></li>
+<li>On-chain securities trading shifts from "if feasible" to "when it will happen," with regulatory progress faster than expected (Source: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">#4</a>)</li>
+<li><em>-&gt; Marginal regulatory relaxation or rule clarification often leads to a re-rating of valuation frameworks.</em></li>
+<li>Tokenization expands from cryptocurrencies to traditional assets (e.g., gold), accelerating institutional adoption (Source: <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>)</li>
+<li><em>-&gt; Advancement of on-chain compliance and institutionalization may drive a new wave of asset and liquidity migration.</em></li>
+<li>Solana Ecosystem: Expansion of tokenized assets and network upgrades bring growth potential (Source: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>)</li>
+<li><em>-&gt; Advancement of on-chain compliance and institutionalization may drive a new wave of asset and liquidity migration.</em></li>
+</ul>
+<h3>Institutional &amp; Regulatory Dividends</h3>
+<ul>
+<li>The evolution of digital assets and tokenization in regions like the UK provides a reference for global compliance frameworks (Source: <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>)</li>
+<li><em>-&gt; Incremental demand or new business models hold medium-term opportunity value.</em></li>
+</ul>
+<h3>Cross-Industry Combination Opportunities</h3>
+<ul>
+<li>Tokenized gold products: Institutional adoption may drive more traditional assets on-chain (Source: <a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">#14</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>)</li>
+<li><em>-&gt; Incremental demand or new business models hold medium-term opportunity value.</em></li>
+</ul>
+<h2>Key Original Links</h2>
 <ol>
 <li><a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">Here’s what happened in crypto today</a>（Cointelegraph, score=10.2）</li>
 <li><a href="https://solana.com/news/matrixdock-xaum-launch">Matrixdock Brings XAUm to Solana, Expanding Institutional-Grade Tokenized Gold Access</a>（Solana News, score=5.1）</li>
@@ -126,115 +135,35 @@
 <li><a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526027198/msft-20260128.htm">MSFT filed 8-K (2026-01-28)</a>（SEC Filing, score=3.8）</li>
 <li><a href="https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm">META filed 10-K (2026-01-29)</a>（SEC Filing, score=3.8）</li>
 <li><a href="https://www.sec.gov/Archives/edgar/data/1326801/000162828026003832/meta-20260128.htm">META filed 8-K (2026-01-28)</a>（SEC Filing, score=3.8）</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/1326801/000162828026002429/meta-20260112.htm">META filed 8-K (2026-01-16)</a>（SEC Filing, score=3.8）</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm">AMZN filed 10-K (2026-02-06)</a>（SEC Filing, score=3.8）</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/1018724/000101872426000002/amzn-20260205.htm">AMZN filed 8-K (2026-02-05)</a>（SEC Filing, score=3.8）</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/1652044/000119312526051423/d946885d8k.htm">GOOGL filed 8-K (2026-02-13)</a>（SEC Filing, score=3.8）</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm">GOOGL filed 10-K (2026-02-05)</a>（SEC Filing, score=3.8）</li>
-</ol></article>
-    <article id="panel-en" class="panel"><h2>1) Major Breakthroughs in IT / AI / Web3 / Power Trading Industries</h2>
-<ul>
-<li>SEC clearly signals crypto innovation exemption, marking a breakthrough in US on-chain securities trading regulation (Sources: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a>)</li>
-<li>Matrixdock deploys Asia's largest tokenized gold product, XAUm, to Solana, achieving institutional-grade gold tokenization (Sources: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>)</li>
-<li>Blockchain cross-border payment technology matures; Chainlink promotes secure and compliant on-chain cross-border payment solutions (Sources: <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">#4</a>)</li>
-<li>Cardano establishes the Pentad alliance, setting a 70 million ADA key integration budget to drive institutional adoption</li>
-</ul>
-<h2>2) Positive Signals for Stock Investment Value</h2>
-<ul>
-<li>Crypto market boosted by Supreme Court tariff ruling; improved regulatory environment benefits cryptocurrency-related stocks (Sources: <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>)</li>
-<li>Tokenized gold product expands to Solana, providing institutional investors with new asset allocation tools (Sources: <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>)</li>
-<li>Major tech companies (NVDA, MSFT, META, AMZN, GOOGL, AAPL) report earnings intensively; AI-related capital expenditures continue to grow (Sources: <a href="https://www.sec.gov/Archives/edgar/data/1045810/000104581026000003/nvda-20260120.htm">#6</a>, <a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm">#7</a>)</li>
-<li>Corporate Power Purchase Agreement (PPA) market declines overall, but AI demand supports clean energy procurement by large tech companies (Sources: <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>)</li>
-</ul>
-<h2>3) Opportunity Tracking List (Trends + Watchlist)</h2>
-<table>
-<thead>
-<tr>
-<th>Opportunity Signal</th>
-<th>Why It's Important</th>
-<th>Tracking Action</th>
-<th>Related Source Links</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Corporate PPA market declines for the first time in nine years, but AI demand fills the gap; solar remains the dominant technology.</td>
-<td>AI infrastructure investment determines mid-term revenue elasticity and profit margin inflection points.</td>
-<td>Track computing power capital expenditure, cloud demand, and inference cost changes.</td>
-<td><a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a></td>
-</tr>
-<tr>
-<td>Rise of crypto-native communication tool Status as a Discord alternative, reflecting growing privacy demand.</td>
-<td>On-chain activity and compliance progress are important leading indicators for Web3 valuation.</td>
-<td>Track on-chain transaction volume, institutional adoption, and regulatory progress.</td>
-<td><a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a></td>
-</tr>
-<tr>
-<td>South Korea's Bithumb $43 billion Bitcoin error incident triggers regulatory reflection, potentially driving stricter security standards.</td>
-<td>Marginal regulatory changes can alter valuation anchors and risk premiums.</td>
-<td>Track policy implementation timeline, scope of application, and first beneficiaries.</td>
-<td><a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a></td>
-</tr>
-<tr>
-<td>Evolution of UK digital assets and tokenization, providing new pathways for traditional finance and blockchain integration.</td>
-<td>This signal may affect mid-term expectation gaps.</td>
-<td>Continuously track the next announcement or data update.</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Follow-up progress on SEC crypto innovation exemption policy and its impact on compliant crypto trading platforms.</td>
-<td>Marginal regulatory changes can alter valuation anchors and risk premiums.</td>
-<td>Track policy implementation timeline, scope of application, and first beneficiaries.</td>
-<td><a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a>, <a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">#4</a></td>
-</tr>
-<tr>
-<td>Integration and application of tokenized gold products in DeFi and the degree of institutional adoption.</td>
-<td>On-chain activity and compliance progress are important leading indicators for Web3 valuation.</td>
-<td>Track on-chain transaction volume, institutional adoption, and regulatory progress.</td>
-<td><a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a></td>
-</tr>
-<tr>
-<td>Long-term structural impact of AI demand on the power trading market and evolution of clean energy procurement models.</td>
-<td>Power supply/demand and grid connection constraints translate to spot prices and utility valuations.</td>
-<td>Track regional load, grid connection progress, and capacity price changes.</td>
-<td><a href="https://www.pv-magazine.com/2026/02/20/corporate-ppa-deals-down-10-in-2025-as-ai-demand-plugs-gaps/">#5</a>, <a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a></td>
-</tr>
-<tr>
-<td>AI capital expenditure data in major tech company earnings reports and its pull effect on supply chain companies.</td>
-<td>Earnings report and guidance changes typically precede market expectation revisions.</td>
-<td>Track guidance revisions (upward/downward) and capital expenditure pace.</td>
-<td><a href="https://www.sec.gov/Archives/edgar/data/1045810/000104581026000003/nvda-20260120.htm">#6</a>, <a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm">#7</a>, <a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526027198/msft-20260128.htm">#8</a></td>
-</tr>
-<tr>
-<td>Progress on crypto banking license approvals (e.g., World Liberty Financial) and changes in regulatory attitude.</td>
-<td>Marginal regulatory changes can alter valuation anchors and risk premiums.</td>
-<td>Track policy implementation timeline, scope of application, and first beneficiaries.</td>
-<td><a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">#1</a>, <a href="https://solana.com/news/matrixdock-xaum-launch">#2</a>, <a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">#3</a></td>
-</tr>
-</tbody>
-</table>
-<h2>Key Source Links</h2>
-<ol>
-<li><a href="https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&amp;utm_medium=rss&amp;utm_campaign=rss_partner_inbound">Here’s what happened in crypto today</a> (Cointelegraph, score=10.2)</li>
-<li><a href="https://solana.com/news/matrixdock-xaum-launch">Matrixdock Brings XAUm to Solana, Expanding Institutional-Grade Tokenized Gold Access</a> (Solana News, score=5.1)</li>
-<li><a href="https://www.bankless.com/read/news/sec-crypto-exemption-2026">The SEC Is Eyeing a Crypto Innovation Exemption This Year</a> (Bankless, score=5.1)</li>
-<li><a href="https://blog.chain.link/how-blockchain-improves-cross-border-payments/">How Blockchain Improves Cross-Border Payments</a> (Chainlink Blog, score=5.1)</li>
-<li><a href="https://www.pv-magazine.com/2026/02/20/corporate-ppa-deals-down-10-in-2025-as-ai-demand-plugs-gaps/">Corporate PPA deals down 10% in 2025 as AI demand plugs gaps</a> (pv magazine International, score=4.9)</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/1045810/000104581026000003/nvda-20260120.htm">NVDA filed 8-K (2026-01-23)</a> (SEC Filing, score=3.8)</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm">MSFT filed 10-Q (2026-01-28)</a> (SEC Filing, score=3.8)</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/789019/000119312526027198/msft-20260128.htm">MSFT filed 8-K (2026-01-28)</a> (SEC Filing, score=3.8)</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm">META filed 10-K (2026-01-29)</a> (SEC Filing, score=3.8)</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/1326801/000162828026003832/meta-20260128.htm">META filed 8-K (2026-01-28)</a> (SEC Filing, score=3.8)</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/1326801/000162828026002429/meta-20260112.htm">META filed 8-K (2026-01-16)</a> (SEC Filing, score=3.8)</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm">AMZN filed 10-K (2026-02-06)</a> (SEC Filing, score=3.8)</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/1018724/000101872426000002/amzn-20260205.htm">AMZN filed 8-K (2026-02-05)</a> (SEC Filing, score=3.8)</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/1652044/000119312526051423/d946885d8k.htm">GOOGL filed 8-K (2026-02-13)</a> (SEC Filing, score=3.8)</li>
-<li><a href="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm">GOOGL filed 10-K (2026-02-05)</a> (SEC Filing, score=3.8)</li>
+<li><a href="https://www.theblock.co/post/390653/crypto-prices-rally-as-supreme-court-strikes-down-trumps-broad-tariff-regime?utm_source=rss&amp;utm_medium=rss">Crypto prices rally as Supreme Court strikes down Trump’s broad tariff regime</a>（The Block, score=3.7）</li>
+<li><a href="https://decrypt.co/358744/south-korean-lawmakers-slam-regulators-bithumb-43-billion-bitcoin-blunder">South Korean Lawmakers Slam Regulators Over Bithumb's $43 Billion Bitcoin Blunder</a>（Decrypt, score=3.7）</li>
+<li><a href="https://www.bankless.com/read/status-cypherpunk-discord-alternative">The Cypherpunk Alternative to Discord</a>（Bankless, score=3.7）</li>
+<li><a href="https://blog.chain.link/the-evolution-of-digital-assets-and-tokenization-in-the-united-kingdom/">The Evolution of Digital Assets and Tokenization in the United Kingdom</a>（Chainlink Blog, score=3.7）</li>
+<li><a href="https://www.theblock.co/post/390625/house-democrats-press-treasury-sec-bessent-over-occ-review-of-trump-linked-world-liberty-financials-trust-bank-charter?utm_source=rss&amp;utm_medium=rss">House Democrats press Treasury Sec. Bessent over OCC review of Trump-linked World Liberty Financial’s trust bank charter</a>（The Block, score=3.7）</li>
 </ol></article>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script>
+    function applyLangText(lang) {
+      const key = lang === 'en' ? 'en' : 'zh';
+      const elems = [
+        document.getElementById('back-link'),
+        document.getElementById('page-title'),
+        document.getElementById('page-slogan'),
+        document.getElementById('source-subtitle'),
+      ];
+      for (const el of elems) {
+        if (el && el.dataset && el.dataset[key]) {
+          el.textContent = el.dataset[key];
+        }
+      }
+      const shotBtn = document.getElementById('btn-shot');
+      if (shotBtn && !shotBtn.disabled && shotBtn.dataset && shotBtn.dataset[key]) {
+        shotBtn.textContent = shotBtn.dataset[key];
+      }
+    }
+
     function switchLang(lang) {
       const zhPanel = document.getElementById('panel-zh');
       const enPanel = document.getElementById('panel-en');
@@ -252,6 +181,7 @@
         if (enBtn) enBtn.classList.add('active');
         zhBtn.classList.remove('active');
       }
+      applyLangText(lang);
     }
 
     async function exportScreenshot() {
@@ -259,8 +189,10 @@
       if (!activePanel) return;
 
       const shotBtn = document.getElementById('btn-shot');
+      const lang = activePanel.id === 'panel-en' ? 'en' : 'zh';
+      const loadingText = lang === 'en' ? (shotBtn.dataset.loadingEn || 'Exporting...') : (shotBtn.dataset.loadingZh || '导出中...');
       const prevText = shotBtn.textContent;
-      shotBtn.textContent = '导出中...';
+      shotBtn.textContent = loadingText;
       shotBtn.disabled = true;
 
       try {
@@ -271,7 +203,6 @@
           windowWidth: document.documentElement.scrollWidth
         });
         const date = "2026-02-20";
-        const lang = activePanel.id === 'panel-en' ? 'en' : 'zh';
         const link = document.createElement('a');
         link.download = `active-info-${date}-${lang}.png`;
         link.href = canvas.toDataURL('image/png');

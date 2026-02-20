@@ -13,6 +13,7 @@ from active_info.models import AnalysisResult, NewsItem
 class InnovationCurator:
     def __init__(self, settings: Settings):
         self.provider = settings.analysis_provider.lower()
+        self.deepseek_strict_model = bool(getattr(settings, "deepseek_strict_model", True))
         self.client = None
         self.model = ""
         self.max_candidates = 20
@@ -26,7 +27,9 @@ class InnovationCurator:
 
     def _model_candidates(self) -> List[str]:
         if self.provider == "deepseek":
-            candidates = [self.model, "deepseek-chat", "deepseek-reasoner"]
+            if self.deepseek_strict_model:
+                return [self.model] if self.model else ["deepseek-reasoner"]
+            candidates = [self.model, "deepseek-reasoner", "deepseek-chat"]
             unique: List[str] = []
             for model in candidates:
                 if model and model not in unique:
@@ -47,7 +50,7 @@ class InnovationCurator:
         return analysis
 
     def _rank_with_llm(self, analysis: AnalysisResult, items: List[NewsItem]) -> List[str]:
-        existing = [*(analysis.overlooked_trends or []), *(analysis.watchlist or [])]
+        existing = [*(analysis.investment_signals or []), *(analysis.overlooked_trends or []), *(analysis.watchlist or [])]
         payload = [
             {
                 "id": idx + 1,
@@ -65,7 +68,8 @@ class InnovationCurator:
             "你是趋势研究员。请对候选信号按“创新度”排序，强调："
             "1) 新技术/新制度；"
             "2) 现有元素重组形成新分发或新商业模式；"
-            "3) 对市场结构或叙事有中期影响。"
+            "3) 对市场结构或叙事有中期影响；"
+            "4) 只保留正向、乐观、有增量的机会。"
             "仅返回JSON对象，格式："
             '{"priority_trends":[{"line":"中文一句话","innovation_score":8.5}]}.'
             "line必须是中文；innovation_score范围0~10。"
@@ -77,6 +81,7 @@ class InnovationCurator:
             "rules": [
                 "优先保留创新度>=7.5的信号",
                 "尽量覆盖不同主题，最多返回4条",
+                "排除负面叙事、风险事件、诉讼调查类内容",
                 "line必须是可直接放入机会跟踪清单的一句话",
             ],
         }

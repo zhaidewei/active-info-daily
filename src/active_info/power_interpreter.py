@@ -13,6 +13,7 @@ from active_info.models import NewsItem
 class PowerRadarInterpreter:
     def __init__(self, settings: Settings):
         self.provider = settings.analysis_provider.lower()
+        self.deepseek_strict_model = bool(getattr(settings, "deepseek_strict_model", True))
         self.client = None
         self.model = ""
         self.max_items = 8
@@ -26,7 +27,9 @@ class PowerRadarInterpreter:
 
     def _model_candidates(self) -> List[str]:
         if self.provider == "deepseek":
-            candidates = [self.model, "deepseek-chat", "deepseek-reasoner"]
+            if self.deepseek_strict_model:
+                return [self.model] if self.model else ["deepseek-reasoner"]
+            candidates = [self.model, "deepseek-reasoner", "deepseek-chat"]
             unique: List[str] = []
             for model in candidates:
                 if model and model not in unique:

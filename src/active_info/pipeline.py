@@ -150,7 +150,7 @@ def _render_and_store(
 ) -> Dict[str, Union[str, int]]:
     deduped_items, ingest_stats = dedupe_items(all_items)
 
-    ranked = score_items(deduped_items)
+    ranked = score_items(deduped_items, settings=settings)
     ranked = _cap_source_items(ranked, source_name="SEC Filing", cap=5)
     llm_items = _shortlist_for_llm(settings, ranked)
 
@@ -161,6 +161,7 @@ def _render_and_store(
         deepseek_api_key=settings.deepseek_api_key,
         deepseek_model=settings.deepseek_model,
         deepseek_base_url=settings.deepseek_base_url,
+        deepseek_strict_model=settings.deepseek_strict_model,
     )
     analysis = analyzer.analyze(date_key, llm_items)
     analysis.overview = str(analysis.overview).strip()
@@ -173,6 +174,7 @@ def _render_and_store(
         date_key,
         analysis,
         top_items,
+        all_items_for_refs=ranked,
         ingest_stats=ingest_stats,
     )
     translations = ReportTranslator(settings).translate_markdown(markdown)

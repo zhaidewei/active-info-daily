@@ -12,6 +12,14 @@ from fastapi.templating import Jinja2Templates
 from active_info.config import Settings
 from active_info.storage import ReportStorage
 
+REPORT_BRAND_TITLE_ZH = "乐观者的主动信息汇总"
+REPORT_BRAND_TITLE_EN = "Optimists' Active Intelligence Brief"
+REPORT_SLOGAN_ZH = "悲观者常常更早看见风险，乐观者更可能把握结果；被动刷流量放大焦虑，主动抓取与筛选才能沉淀机会。"
+REPORT_SLOGAN_EN = (
+    "Pessimists may spot risks first, but optimists capture outcomes; "
+    "passive feeds monetize anxiety, while active sourcing and filtering turns information into opportunity."
+)
+
 
 def create_app(settings: Settings) -> FastAPI:
     app = FastAPI(title="Active Info Aggregator")
@@ -66,20 +74,27 @@ def create_app(settings: Settings) -> FastAPI:
         ingest_stats = payload.get("ingest_stats", {}) if isinstance(payload, dict) else {}
         zh_markdown = _strip_leading_h1(str(translations.get("zh_markdown") or report.get("markdown") or ""))
         en_markdown = _strip_leading_h1(str(translations.get("en_markdown") or ""))
-        source_subtitle = ""
+        source_subtitle_zh = ""
+        source_subtitle_en = ""
         if isinstance(ingest_stats, dict):
             raw = ingest_stats.get("raw_items")
             uniq = ingest_stats.get("unique_items")
             dup = ingest_stats.get("duplicates_removed")
             if raw is not None and uniq is not None and dup is not None:
-                source_subtitle = f"数据来源·（原始抓取 {raw}，去重后 {uniq}，重复移除 {dup}）·"
+                source_subtitle_zh = f"数据来源·（原始抓取 {raw}，去重后 {uniq}，重复移除 {dup}）·"
+                source_subtitle_en = f"Sources (raw {raw}, deduped {uniq}, removed {dup})."
 
         return templates.TemplateResponse(
             "report.html",
             {
                 "request": request,
                 "report": report,
-                "source_subtitle": source_subtitle,
+                "title_zh": f"{REPORT_BRAND_TITLE_ZH} - {report_date}",
+                "title_en": f"{REPORT_BRAND_TITLE_EN} - {report_date}",
+                "slogan_zh": REPORT_SLOGAN_ZH,
+                "slogan_en": REPORT_SLOGAN_EN,
+                "source_subtitle_zh": source_subtitle_zh,
+                "source_subtitle_en": source_subtitle_en,
                 "zh_html": _md_to_html(zh_markdown),
                 "en_html": _md_to_html(en_markdown) if en_markdown else "",
                 "has_en": bool(en_markdown.strip()),

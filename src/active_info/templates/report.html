@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>主动信息汇总日报 - {{ report.report_date }}</title>
+  <title>{{ title_zh }}</title>
   <style>
     body { font-family: "Avenir Next", "PingFang SC", sans-serif; margin: 24px; background: #f4f7ff; color: #1f2430; }
     .container { max-width: 980px; margin: 0 auto; background: #fff; padding: 24px; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,.08); }
     .page-title { margin: 14px 0 6px; line-height: 1.2; }
+    .slogan { margin: 4px 0 12px; color: #3d4f70; font-style: italic; line-height: 1.6; }
     .subtitle { font-size: 13px; color: #5e6e88; margin-bottom: 10px; }
     .toolbar { display: flex; gap: 10px; margin: 14px 0 20px; }
     .btn { border: 1px solid #ccd6ea; background: #f8fbff; color: #173b6f; padding: 7px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; }
@@ -23,10 +24,11 @@
 </head>
 <body>
   <div class="container">
-    <a href="/">返回列表</a>
-    <h1 class="page-title">主动信息汇总日报 - {{ report.report_date }}</h1>
-    {% if source_subtitle %}
-    <div class="subtitle">{{ source_subtitle }}</div>
+    <a id="back-link" href="/" data-zh="返回列表" data-en="Back to List">返回列表</a>
+    <h1 id="page-title" class="page-title" data-zh="{{ title_zh }}" data-en="{{ title_en }}">{{ title_zh }}</h1>
+    <div id="page-slogan" class="slogan" data-zh="{{ slogan_zh }}" data-en="{{ slogan_en }}">{{ slogan_zh }}</div>
+    {% if source_subtitle_zh or source_subtitle_en %}
+    <div id="source-subtitle" class="subtitle" data-zh="{{ source_subtitle_zh }}" data-en="{{ source_subtitle_en }}">{{ source_subtitle_zh }}</div>
     {% endif %}
 
     <div class="toolbar">
@@ -34,7 +36,15 @@
       {% if has_en %}
       <button id="btn-en" class="btn" onclick="switchLang('en')">English</button>
       {% endif %}
-      <button id="btn-shot" class="btn" onclick="exportScreenshot()">一键导出长图</button>
+      <button
+        id="btn-shot"
+        class="btn"
+        onclick="exportScreenshot()"
+        data-zh="一键导出长图"
+        data-en="Export Screenshot"
+        data-loading-zh="导出中..."
+        data-loading-en="Exporting..."
+      >一键导出长图</button>
     </div>
 
     <article id="panel-zh" class="panel active">{{ zh_html | safe }}</article>
@@ -45,6 +55,25 @@
 
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script>
+    function applyLangText(lang) {
+      const key = lang === 'en' ? 'en' : 'zh';
+      const elems = [
+        document.getElementById('back-link'),
+        document.getElementById('page-title'),
+        document.getElementById('page-slogan'),
+        document.getElementById('source-subtitle'),
+      ];
+      for (const el of elems) {
+        if (el && el.dataset && el.dataset[key]) {
+          el.textContent = el.dataset[key];
+        }
+      }
+      const shotBtn = document.getElementById('btn-shot');
+      if (shotBtn && !shotBtn.disabled && shotBtn.dataset && shotBtn.dataset[key]) {
+        shotBtn.textContent = shotBtn.dataset[key];
+      }
+    }
+
     function switchLang(lang) {
       const zhPanel = document.getElementById('panel-zh');
       const enPanel = document.getElementById('panel-en');
@@ -62,6 +91,7 @@
         if (enBtn) enBtn.classList.add('active');
         zhBtn.classList.remove('active');
       }
+      applyLangText(lang);
     }
 
     async function exportScreenshot() {
@@ -69,8 +99,10 @@
       if (!activePanel) return;
 
       const shotBtn = document.getElementById('btn-shot');
+      const lang = activePanel.id === 'panel-en' ? 'en' : 'zh';
+      const loadingText = lang === 'en' ? (shotBtn.dataset.loadingEn || 'Exporting...') : (shotBtn.dataset.loadingZh || '导出中...');
       const prevText = shotBtn.textContent;
-      shotBtn.textContent = '导出中...';
+      shotBtn.textContent = loadingText;
       shotBtn.disabled = true;
 
       try {
@@ -81,7 +113,6 @@
           windowWidth: document.documentElement.scrollWidth
         });
         const date = "{{ report.report_date }}";
-        const lang = activePanel.id === 'panel-en' ? 'en' : 'zh';
         const link = document.createElement('a');
         link.download = `active-info-${date}-${lang}.png`;
         link.href = canvas.toDataURL('image/png');

@@ -13,6 +13,7 @@ class ReportTranslator:
     def __init__(self, settings: Settings):
         self.enabled = settings.translation_enabled
         self.provider = settings.analysis_provider.lower()
+        self.deepseek_strict_model = bool(getattr(settings, "deepseek_strict_model", True))
         self.max_chars = settings.translation_max_chars
         self.client = None
         self.model = ""
@@ -26,7 +27,9 @@ class ReportTranslator:
 
     def _model_candidates(self) -> list[str]:
         if self.provider == "deepseek":
-            candidates = [self.model, "deepseek-chat", "deepseek-reasoner"]
+            if self.deepseek_strict_model:
+                return [self.model] if self.model else ["deepseek-reasoner"]
+            candidates = [self.model, "deepseek-reasoner", "deepseek-chat"]
             unique: list[str] = []
             for model in candidates:
                 if model and model not in unique:

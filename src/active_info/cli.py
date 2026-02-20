@@ -79,14 +79,15 @@ def rerun_analysis(report_date: Optional[str] = typer.Option(default=None, help=
 def export_static(
     output_dir: str = typer.Option("site", help="静态站点输出目录"),
     latest_only: bool = typer.Option(False, help="仅导出最新报告"),
+    site_url: str = typer.Option("https://example.com", help="站点公开 URL（用于生成 RSS 绝对链接）"),
 ) -> None:
     settings = get_settings()
     try:
-        result = export_static_site(settings, Path(output_dir), latest_only=latest_only)
+        result = export_static_site(settings, Path(output_dir), latest_only=latest_only, site_url=site_url)
     except ValueError as exc:
         typer.echo(f"Error: {exc}")
         raise typer.Exit(code=1)
-    typer.echo(f"Exported static site. reports={result['reports']} out={result['output_dir']}")
+    typer.echo(f"Exported static site. reports={result['reports']} out={result['output_dir']} rss={result['rss']}")
 
 
 if __name__ == "__main__":
