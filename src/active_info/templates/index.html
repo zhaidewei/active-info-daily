@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>主动信息聚合</title>
+  <style>
+    body { font-family: "Avenir Next", "PingFang SC", sans-serif; margin: 24px; background: #f6f8fb; color: #1c1d22; }
+    .card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 3px 12px rgba(0,0,0,.06); margin-bottom: 16px; }
+    a { color: #0d4f9f; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul { line-height: 1.8; }
+  </style>
+</head>
+<body>
+  <h1>主动信息聚合日报</h1>
+  {% if latest %}
+  <div class="card">
+    <strong>最新报告：</strong>
+    <a href="/reports/{{ latest.report_date }}">{{ latest.report_date }}</a>
+    <span>（共 {{ latest.total_items }} 条信号）</span>
+  </div>
+  {% endif %}
+
+  <div class="card">
+    <h2>历史报告</h2>
+    <ul>
+      {% for r in reports %}
+      <li><a href="/reports/{{ r.report_date }}">{{ r.report_date }}</a> - {{ r.total_items }} items</li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>

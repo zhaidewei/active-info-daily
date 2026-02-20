@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.vercel/
+data/active_info.db
+data/active_info.db-shm
+data/active_info.db-wal
+data/snapshots/
+data/reports/*.md
+data/reports/*.json
+.pytest_cache/

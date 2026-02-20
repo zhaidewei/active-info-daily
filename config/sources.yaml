@@ -1,0 +1,174 @@
+rss:
+  # Core AI / industry channels
+  - name: OpenAI Blog
+    url: https://openai.com/news/rss.xml
+    category: ai
+  - name: NVIDIA News
+    url: https://nvidianews.nvidia.com/releases.xml
+    category: ai
+  - name: Google AI Blog
+    url: https://blog.google/technology/ai/rss/
+    category: ai
+  - name: Google Research Blog
+    url: https://research.google/blog/rss/
+    category: ai
+  - name: Hugging Face Blog
+    url: https://huggingface.co/blog/feed.xml
+    category: ai
+  - name: Microsoft Research
+    url: https://www.microsoft.com/en-us/research/feed/
+    category: ai
+
+  # Major tech / business media
+  - name: NYT Technology
+    url: https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml
+    category: it
+  - name: NYT Business
+    url: https://rss.nytimes.com/services/xml/rss/nyt/Business.xml
+    category: market
+  - name: WSJ World
+    url: https://feeds.a.dj.com/rss/RSSWorldNews.xml
+    category: market
+  - name: Bloomberg Technology
+    url: https://feeds.bloomberg.com/technology/news.rss
+    category: market
+  - name: BBC Technology
+    url: https://feeds.bbci.co.uk/news/technology/rss.xml
+    category: it
+  - name: BBC Business
+    url: https://feeds.bbci.co.uk/news/business/rss.xml
+    category: market
+  - name: CNBC Technology
+    url: https://www.cnbc.com/id/19854910/device/rss/rss.html
+    category: market
+  - name: FT Technology
+    url: https://www.ft.com/technology?format=rss
+    category: market
+  - name: Hacker News Front Page
+    url: https://hnrss.org/frontpage
+    category: it
+  - name: TechCrunch
+    url: https://techcrunch.com/feed/
+    category: it
+  - name: The Verge
+    url: https://www.theverge.com/rss/index.xml
+    category: it
+  - name: Ars Technica
+    url: http://feeds.arstechnica.com/arstechnica/index
+    category: it
+  - name: WIRED
+    url: https://www.wired.com/feed/rss
+    category: it
+  - name: MIT Technology Review
+    url: https://www.technologyreview.com/feed/
+    category: it
+
+  # Web3 / digital asset media and leader blogs
+  - name: The Block
+    url: https://www.theblock.co/rss.xml
+    category: web3
+  - name: Cointelegraph
+    url: https://cointelegraph.com/rss
+    category: web3
+  - name: Decrypt
+    url: https://decrypt.co/feed
+    category: web3
+  - name: Messari
+    url: https://messari.io/rss
+    category: web3
+  - name: Bankless
+    url: https://www.bankless.com/feed
+    category: web3
+  - name: Ethereum Foundation Blog
+    url: https://blog.ethereum.org/feed.xml
+    category: web3
+  - name: Vitalik Buterin Blog
+    url: https://vitalik.eth.limo/feed.xml
+    category: web3
+  - name: Chainlink Blog
+    url: https://blog.chain.link/rss/
+    category: web3
+  - name: Solana News
+    url: https://solana.com/news/rss.xml
+    category: web3
+
+  # Power trading / electricity market
+  - name: Utility Dive
+    url: https://www.utilitydive.com/feeds/news/
+    category: power_trading
+  - name: POWER Magazine
+    url: https://www.powermag.com/feed/
+    category: power_trading
+  - name: RTO Insider
+    url: https://www.rtoinsider.com/feed/
+    category: power_trading
+  - name: US Department of Energy
+    url: https://www.energy.gov/rss.xml
+    category: power_trading
+  - name: Energy Storage News
+    url: https://www.energy-storage.news/feed/
+    category: power_trading
+  - name: pv magazine International
+    url: https://www.pv-magazine.com/feed/
+    category: power_trading
+  - name: Renew Economy
+    url: https://reneweconomy.com.au/feed/
+    category: power_trading
+
+  # Leader / engineering blogs
+  - name: Microsoft Official Blog
+    url: https://blogs.microsoft.com/feed/
+    category: ai
+  - name: AWS News Blog
+    url: https://aws.amazon.com/blogs/aws/feed/
+    category: ai
+  - name: Cloudflare Blog
+    url: https://blog.cloudflare.com/rss/
+    category: it
+  - name: GitHub Blog
+    url: https://github.blog/feed/
+    category: it
+  - name: NVIDIA Blog
+    url: https://blogs.nvidia.com/feed/
+    category: ai
+  - name: Meta Engineering
+    url: https://engineering.fb.com/feed/
+    category: it
+  - name: Y Combinator Blog
+    url: https://www.ycombinator.com/blog/feed
+    category: it
+  - name: Sequoia Capital
+    url: https://www.sequoiacap.com/feed/
+    category: market
+  - name: Simon Willison Blog
+    url: https://simonwillison.net/atom/everything/
+    category: ai
+
+  # Regulation / filings / policy signal
+  - name: SEC Press Releases
+    url: https://www.sec.gov/news/pressreleases.rss
+    category: earnings
+
+twitter_rss:
+  # Twitter 没有官方免费 RSS，这里默认使用 Nitter 镜像 RSS。
+  # 可按需替换为你可访问、稳定的镜像地址。
+  - name: Sam Altman (Nitter RSS)
+    url: https://nitter.net/sama/rss
+    category: ai
+  - name: Andrej Karpathy (Nitter RSS)
+    url: https://nitter.net/karpathy/rss
+    category: ai
+
+polymarket:
+  enabled: true
+  limit: 60
+  min_volume: 30000
+
+sec_filings:
+  enabled: true
+  # SEC 建议填写可联系的标识（组织+邮箱）
+  user_agent: active-info local-research zeal0502@gmail.com
+  tickers: [NVDA, MSFT, META, AMZN, GOOGL, AAPL, TSM]
+  forms: [10-Q, 10-K, 8-K]
+  lookback_days: 45
+  per_ticker_limit: 3

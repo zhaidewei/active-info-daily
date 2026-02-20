@@ -1,0 +1,2 @@
+[console_scripts]
+active-info = active_info.cli:app
