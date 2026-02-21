@@ -5,13 +5,20 @@
     <link>https://example.com/</link>
     <description>聚焦正向、乐观、有增量、有创新的主动信息汇总。</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 20 Feb 2026 21:42:50 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 21 Feb 2026 07:36:25 +0000</lastBuildDate>
+    <item>
+      <title>乐观者的主动信息汇总 - 2026-02-21</title>
+      <link>https://example.com/reports/2026-02-21</link>
+      <guid isPermaLink="true">https://example.com/reports/2026-02-21</guid>
+      <pubDate>Sat, 21 Feb 2026 00:00:00 +0000</pubDate>
+      <description>法国巴黎银行在以太坊上启动货币市场基金代币化试点，采用权限访问模式。（来源：#1, #8） Matrixdock将亚洲最大代币化黄金产品XAUm部署至Solana网络，实现机构级访问与DeFi集成。（来源：#3, #1） Vitalik Buterin推动以太坊升级，FOCIL正式纳入Hegota技术路线图。（来源：#12, #1） 投资代币化资产试点项目，如法国巴黎银行基金与Falcon Finance的RWA（现实世界资产）框架。（来源：#1, #2） 关注以太坊和Solana协议升级，捕捉底层区块链技术创新…</description>
+    </item>
     <item>
       <title>乐观者的主动信息汇总 - 2026-02-20</title>
       <link>https://example.com/reports/2026-02-20</link>
       <guid isPermaLink="true">https://example.com/reports/2026-02-20</guid>
       <pubDate>Fri, 20 Feb 2026 00:00:00 +0000</pubDate>
-      <description>Matrixdock将亚洲最大的代币化黄金产品XAUm部署至Solana，实现机构级黄金代币化（来源: #2, #14） 美国证券交易委员会（SEC）明确表示正在考虑加密创新豁免，为链上证券交易铺平道路（来源: #2, #3） 机构级代币化黄金产品扩展至Solana，为DeFi与传统资产融合创造新机会（来源: #2, #14） 区块链跨境支付解决方案趋于成熟，Chainlink等技术提供商受益于需求增长（来源: #4, #14） 预测市场与内容平台（如Polymarket与Substack）合作，探索新型商业模式…</description>
+      <description>Project Silica玻璃存储技术取得突破，降低成本并支持数据保存万年。（来源：#3, #8） 投资于AI基础设施，例如AWS高性能实例和电信自动化网络。（来源：#13, #1） ### 跨行业组合机遇 智能体开发和JiTTesting技术革新软件测试，推动更快速高效的代码交付。（来源：#2） _-&gt; 需求增量或新商业模式，具备中期机遇价值。_ ### Web3 与链上金融 美国证券交易委员会（SEC）加密创新豁免有望开启美国证券交易新篇章，促进市场正规化。（来源：#4, #7） _-&gt; 监管边际放松或规则…</description>
     </item>
   </channel>
 </rss>

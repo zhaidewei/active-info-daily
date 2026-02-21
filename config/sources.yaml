@@ -158,6 +158,9 @@ twitter_rss:
   - name: Andrej Karpathy (Nitter RSS)
     url: https://nitter.net/karpathy/rss
     category: ai
+  - name: Vitalik Buterin (Nitter RSS)
+    url: https://nitter.net/VitalikButerin/rss
+    category: web3
 
 polymarket:
   enabled: true

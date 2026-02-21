@@ -69,6 +69,7 @@
 - 页面品牌升级：标题改为“乐观者的主动信息汇总”，并在页面开头加入主动/被动信息获取的价值观 slogan
 - “趋势与机会”展示优化：去除重复“机会含义”标签，改为斜体洞察行，降低视觉冗余
 - 报告页中英切换补齐：标题/slogan/来源副标题/返回文案/导出按钮支持中英文联动切换
+- 信息源扩展：新增 `Vitalik Buterin (Twitter/Nitter RSS)` 到 `twitter_rss`（分类 `web3`）
 
 ## 下一步
 - 接入 earnings call transcript
