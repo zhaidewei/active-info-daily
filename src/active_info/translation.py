@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import re
-from typing import Dict
+from typing import Dict, List, Tuple
 
 from openai import OpenAI
 
@@ -215,6 +215,63 @@ class ReportTranslator:
 
         return "\n".join(lines)
 
+    def _translate_source_link_labels(self, markdown_text: str, target_language: str) -> str:
+        if not markdown_text.strip():
+            return markdown_text
+        if not self.client or not self.model:
+            return markdown_text
+
+        lines = markdown_text.splitlines()
+        in_source_section = False
+        index_and_labels: List[Tuple[int, str]] = []
+
+        for idx, line in enumerate(lines):
+            stripped = line.strip()
+            if stripped.startswith("## "):
+                heading = stripped[3:].strip().lower()
+                in_source_section = heading in {"重点原始链接", "key source links"}
+                continue
+            if not in_source_section:
+                continue
+            if not re.match(r"^\d+\.\s+\[", stripped):
+                continue
+            match = re.search(r"\[([^\]]+)\]\((https?://[^)]+)\)", line)
+            if not match:
+                continue
+            label = match.group(1).strip()
+            if not label:
+                continue
+            if target_language == "Simplified Chinese" and self._chinese_ratio(label) >= 0.45:
+                continue
+            index_and_labels.append((idx, label))
+
+        if not index_and_labels:
+            return markdown_text
+
+        translated_labels: List[str] = []
+        labels = [label for _, label in index_and_labels]
+        batch_size = 20
+        for start in range(0, len(labels), batch_size):
+            chunk = labels[start : start + batch_size]
+            try:
+                translated_chunk = self._translate_lines(chunk, target_language=target_language)
+            except Exception:
+                translated_chunk = []
+            if len(translated_chunk) != len(chunk):
+                translated_chunk = chunk
+            translated_labels.extend(translated_chunk)
+
+        for (line_idx, _), new_label in zip(index_and_labels, translated_labels):
+            if not new_label.strip():
+                continue
+            line = lines[line_idx]
+            match = re.search(r"\[([^\]]+)\]\((https?://[^)]+)\)", line)
+            if not match:
+                continue
+            lines[line_idx] = line[: match.start(1)] + new_label.strip() + line[match.end(1) :]
+
+        return "\n".join(lines)
+
     def translate_markdown(self, markdown_text: str) -> Dict[str, str]:
         source = markdown_text[: self.max_chars]
         result = {"zh_markdown": "", "en_markdown": ""}
@@ -247,6 +304,9 @@ class ReportTranslator:
             if line_en:
                 en_markdown = line_en
 
-        result["zh_markdown"] = zh_markdown or source
+        zh_final = zh_markdown or source
+        zh_final = self._translate_source_link_labels(zh_final, target_language="Simplified Chinese")
+
+        result["zh_markdown"] = zh_final
         result["en_markdown"] = en_markdown or source
         return result
