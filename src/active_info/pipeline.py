@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import json
 from datetime import date, datetime
+import re
+from difflib import SequenceMatcher
 from typing import Dict, List, Optional, Union
 
 from active_info.analysis import Analyzer
@@ -18,6 +20,7 @@ from active_info.scoring import score_items
 from active_info.source_loader import load_source_config
 from active_info.storage import ReportStorage, build_report
 from active_info.translation import ReportTranslator
+from active_info.models import AnalysisResult
 
 
 def _serialize_item(item: NewsItem) -> Dict[str, Union[str, float, None]]:
@@ -142,6 +145,166 @@ def _cap_source_items(items: List[NewsItem], source_name: str, cap: int) -> List
     return kept
 
 
+def _normalize_text_signature(text: str) -> str:
+    cleaned = (text or "").strip().lower()
+    cleaned = re.sub(r"（来源[:：].*?）", "", cleaned)
+    cleaned = re.sub(r"\(source:.*?\)", "", cleaned)
+    cleaned = re.sub(r"[^a-z0-9\u4e00-\u9fff]+", "", cleaned)
+    return cleaned.strip()
+
+
+def _collect_recent_signatures(
+    report_storage: ReportStorage,
+    date_key: str,
+    lookback_reports: int,
+) -> Dict[str, set[str]]:
+    if lookback_reports <= 0:
+        return {"urls": set(), "titles": set(), "analysis_lines": set()}
+
+    rows = report_storage.list_reports(limit=max(20, lookback_reports * 6))
+    picked = [row for row in rows if str(row.get("report_date", "")) < date_key][:lookback_reports]
+    recent_urls: set[str] = set()
+    recent_titles: set[str] = set()
+    recent_lines: set[str] = set()
+
+    for row in picked:
+        report_date = str(row.get("report_date", ""))
+        if not report_date:
+            continue
+        report = report_storage.get_report(report_date)
+        if not report:
+            continue
+        try:
+            payload = json.loads(str(report.get("json_content", "{}") or "{}"))
+        except Exception:
+            continue
+        for item in payload.get("top_items", []) or []:
+            if not isinstance(item, dict):
+                continue
+            url = str(item.get("url", "")).strip()
+            title = str(item.get("title", "")).strip()
+            if url:
+                recent_urls.add(url)
+            if title:
+                recent_titles.add(_normalize_text_signature(title))
+
+        analysis = payload.get("analysis", {}) or {}
+        for key in ("breakthroughs", "investment_signals", "overlooked_trends", "watchlist"):
+            rows2 = analysis.get(key, []) or []
+            if not isinstance(rows2, list):
+                continue
+            for raw in rows2:
+                line = str(raw or "").strip()
+                sig = _normalize_text_signature(line)
+                if sig:
+                    recent_lines.add(sig)
+
+    return {"urls": recent_urls, "titles": recent_titles, "analysis_lines": recent_lines}
+
+
+def _apply_repeat_penalty(
+    ranked: List[NewsItem],
+    repeated_urls: set[str],
+    repeated_titles: set[str],
+    penalty: float,
+) -> List[NewsItem]:
+    if penalty <= 0:
+        return ranked
+    out: List[NewsItem] = []
+    for item in ranked:
+        score = float(item.score)
+        if item.url and item.url in repeated_urls:
+            score -= penalty
+        title_sig = _normalize_text_signature(item.title)
+        if title_sig and title_sig in repeated_titles:
+            score -= penalty * 0.7
+        item.score = score
+        out.append(item)
+    out.sort(key=lambda x: x.score, reverse=True)
+    return out
+
+
+def _deprioritize_recent_urls(
+    ranked: List[NewsItem],
+    repeated_urls: set[str],
+    max_reused_in_front: int,
+    front_size: int,
+) -> List[NewsItem]:
+    if not ranked or not repeated_urls:
+        return ranked
+    if max_reused_in_front < 0:
+        return ranked
+
+    front_target = max(1, front_size)
+    front: List[NewsItem] = []
+    overflow: List[NewsItem] = []
+    reused_count = 0
+
+    for item in ranked:
+        is_reused = bool(item.url and item.url in repeated_urls)
+        if len(front) < front_target:
+            if is_reused and reused_count >= max_reused_in_front:
+                overflow.append(item)
+                continue
+            front.append(item)
+            if is_reused:
+                reused_count += 1
+            continue
+        overflow.append(item)
+
+    # If there are not enough fresh items, fill remaining slots from overflow.
+    if len(front) < front_target and overflow:
+        refill: List[NewsItem] = []
+        for item in overflow:
+            if len(front) < front_target:
+                front.append(item)
+            else:
+                refill.append(item)
+        overflow = refill
+
+    return front + overflow
+
+
+def _line_is_repeated(sig: str, history: set[str]) -> bool:
+    if not sig:
+        return False
+    if sig in history:
+        return True
+    for old in history:
+        if not old:
+            continue
+        if len(sig) >= 12 and sig in old:
+            return True
+        if len(old) >= 12 and old in sig:
+            return True
+        if SequenceMatcher(None, sig, old).ratio() >= 0.82:
+            return True
+    return False
+
+
+def _filter_repeated_lines(lines: List[str], history: set[str], keep_fallback: int = 1) -> List[str]:
+    out: List[str] = []
+    for raw in lines or []:
+        line = str(raw or "").strip()
+        sig = _normalize_text_signature(line)
+        if not line or _line_is_repeated(sig, history):
+            continue
+        out.append(line)
+    if out:
+        return out
+    return [str(x) for x in (lines or [])[:keep_fallback]]
+
+
+def _suppress_cross_report_repeats(analysis: AnalysisResult, recent_lines: set[str]) -> AnalysisResult:
+    if not recent_lines:
+        return analysis
+    analysis.breakthroughs = _filter_repeated_lines(analysis.breakthroughs, recent_lines, keep_fallback=2)
+    analysis.investment_signals = _filter_repeated_lines(analysis.investment_signals, recent_lines, keep_fallback=2)
+    analysis.overlooked_trends = _filter_repeated_lines(analysis.overlooked_trends, recent_lines, keep_fallback=2)
+    analysis.watchlist = _filter_repeated_lines(analysis.watchlist, recent_lines, keep_fallback=2)
+    return analysis
+
+
 def _render_and_store(
     settings: Settings,
     report_storage: ReportStorage,
@@ -149,8 +312,25 @@ def _render_and_store(
     all_items: List[NewsItem],
 ) -> Dict[str, Union[str, int]]:
     deduped_items, ingest_stats = dedupe_items(all_items)
+    recent = _collect_recent_signatures(
+        report_storage,
+        date_key=date_key,
+        lookback_reports=settings.novelty_lookback_reports,
+    )
 
     ranked = score_items(deduped_items, settings=settings)
+    ranked = _apply_repeat_penalty(
+        ranked,
+        repeated_urls=recent["urls"],
+        repeated_titles=recent["titles"],
+        penalty=settings.novelty_repeat_penalty,
+    )
+    ranked = _deprioritize_recent_urls(
+        ranked,
+        repeated_urls=recent["urls"],
+        max_reused_in_front=settings.novelty_max_reused_items_in_front,
+        front_size=max(15, settings.llm_input_items),
+    )
     ranked = _cap_source_items(ranked, source_name="SEC Filing", cap=5)
     llm_items = _shortlist_for_llm(settings, ranked)
 
@@ -166,6 +346,7 @@ def _render_and_store(
     analysis = analyzer.analyze(date_key, llm_items)
     analysis.overview = str(analysis.overview).strip()
     analysis = InnovationCurator(settings).curate(analysis, llm_items)
+    analysis = _suppress_cross_report_repeats(analysis, recent_lines=recent["analysis_lines"])
 
     top_items = ranked[:15]
     power_focus = [item for item in ranked if item.category == "power_trading"][:8]

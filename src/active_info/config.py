@@ -27,6 +27,9 @@ class Settings(BaseSettings):
     translation_max_chars: int = Field(default=9000)
     llm_scoring_enabled: bool = Field(default=True)
     llm_scoring_max_items: int = Field(default=80)
+    novelty_lookback_reports: int = Field(default=2)
+    novelty_repeat_penalty: float = Field(default=1.2)
+    novelty_max_reused_items_in_front: int = Field(default=3)
 
     report_max_items: int = Field(default=80)
     llm_input_items: int = Field(default=25)

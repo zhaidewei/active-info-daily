@@ -15,6 +15,7 @@
 - 电力 trading 信号：并入“事实与新闻/趋势与机会”主章节统一呈现
 - 财报接入：`SEC Filings`（按 ticker 拉取 `10-Q/10-K/8-K`）
 - 评分机制：LLM 主评分（按正向/增量/创新原则）+ 规则回退（LLM不可用时）
+- 重复抑制：对最近日报中的重复 URL/标题做降权，限制前排复用条目数量，并过滤跨日报重复表述
 - LLM 友好抓取：支持通过 `r.jina.ai` 获取正文摘要（可关闭）
 - 事件去重：URL + 标题近似匹配去重
 - 正向偏置：负面事件词（fraud/lawsuit/layoff 等）降权
@@ -70,6 +71,9 @@ DEEPSEEK_BASE_URL=https://api.deepseek.com
 DEEPSEEK_STRICT_MODEL=true
 TRANSLATION_ENABLED=true
 TRANSLATION_MAX_CHARS=9000
+NOVELTY_LOOKBACK_REPORTS=2
+NOVELTY_REPEAT_PENALTY=1.2
+NOVELTY_MAX_REUSED_ITEMS_IN_FRONT=3
 ```
 
 ## 运行
